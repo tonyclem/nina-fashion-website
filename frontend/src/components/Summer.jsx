@@ -1,35 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { Stars } from "./Starts";
+import { formatPrice } from "../utils/helpers";
+import { useProductsContext } from "../context/products_context";
 
 const SummerSales = () => {
-  const [products, setProducts] = React.useState([]);
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get("/api/products");
-      setProducts(result.data);
-    };
-
-    fetchData();
-  }, []);
+  const { products, loading, error } = useProductsContext();
 
   return (
     <Wrapper>
       <h1>Summer Sales</h1>
       <div className="container-wrapper">
-        {products.map((product) => (
-          <div className="container" key={product.slug}>
-            <div className="row">
-              <img src={product.image} alt={product.name} />
-              <div className="row-footer">
-                <h4>{product.name}</h4>
-                <p>{product.slug}</p>
-                <h6>$79,30</h6>
+        {loading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          products.map((product) => (
+            <div className="container" key={product.slug}>
+              <div className="row">
+                <Link to={`/products/${product.slug}`}>
+                  <img src={product.image} alt={product.name} />
+                </Link>
+                <div className="row-footer">
+                  <h4>{product.name}</h4>
+                  <p>{product.slug}</p>
+                  <div className="stars">
+                    <Stars stars={product.rating} />
+                  </div>
+
+                  <h6>{formatPrice(product.price)}</h6>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </Wrapper>
   );
@@ -77,7 +83,53 @@ const Wrapper = styled.div`
         h6 {
           font-size: 1.3rem;
         }
+
+        .stars {
+          padding: 0.3rem;
+        }
       }
+    }
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2rem;
+      padding: -1rem;
+    }
+    .container-wrapper {
+      grid-template-columns: auto auto;
+
+      .row {
+        img {
+          width: 160px;
+          height: 150px;
+        }
+
+        .row-footer {
+          h4 {
+            font-size: 14px;
+          }
+
+          p {
+            font-size: 12px;
+          }
+
+          .stars {
+            font-size: 12px;
+          }
+
+          h6 {
+            font-size: 12px;
+            padding-top: -15px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .container-wrapper {
+      grid-template-columns: auto auto;
     }
   }
 `;

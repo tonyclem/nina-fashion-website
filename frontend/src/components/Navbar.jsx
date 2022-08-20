@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { FaInstagram, FaFacebook, FaUserAlt, FaBars } from "react-icons/fa";
 import logo from "../assets/logo.svg";
 import shoppingBag from "../assets/shoppingbag.svg";
+import { useProductsContext } from "../context/products_context";
 
 const Navbar = () => {
+  const { openSidebar } = useProductsContext();
   return (
     <main>
       <Wrapper>
@@ -31,8 +34,14 @@ const Navbar = () => {
           </div>
           <nav className="nav-container">
             <div className="nav-logo">
-              <img src={logo} alt="img" />
-              <button type="button" className="nav-toggle">
+              <Link to="/">
+                <img src={logo} alt="img" />
+              </Link>
+              <button
+                type="button"
+                className="nav-toggle"
+                onClick={openSidebar}
+              >
                 <FaBars />
               </button>
             </div>

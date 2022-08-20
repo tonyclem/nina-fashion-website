@@ -26,6 +26,9 @@ const Hero = () => {
 };
 
 const Wrapper = styled.main`
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
   .hero-container {
     width: 100%;
     height: 100vh;
@@ -75,9 +78,21 @@ const Wrapper = styled.main`
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 550px) {
     .hero-content {
-      background: #000;
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: 100vh;
+
+      h1 {
+        font-size: 1rem;
+      }
+
+      button {
+        color: #fff;
+        width: 8rem;
+      }
     }
   }
 `;

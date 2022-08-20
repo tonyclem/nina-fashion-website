@@ -1,6 +1,7 @@
 const data = {
   featured: [
     {
+      id: 1,
       name: "Polo Shirt",
       price: 5999,
       image: "https://i.postimg.cc/1tj3zLK2/black-polo-04.jpg",
@@ -16,6 +17,7 @@ const data = {
       slug: "polo-shirt",
     },
     {
+      id: 2,
       name: "Red T-Shirt",
       price: 9999,
       image: "https://i.postimg.cc/tRzYPM41/red-shirt-04.jpg",
@@ -31,6 +33,7 @@ const data = {
       shipping: true,
     },
     {
+      id: 3,
       name: "Long shirt",
       price: 2599,
       image: "https://i.postimg.cc/9FLMrwFs/long-shirt-01.jpg",
@@ -46,6 +49,7 @@ const data = {
       shipping: true,
     },
     {
+      id: 4,
       name: "Grey Polo",
       price: 3999,
       image: "https://i.postimg.cc/Kj5FMw7m/grey-polo-02.jpg",
