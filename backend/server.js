@@ -9,7 +9,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/products", (req, res) => {
-  res.status(200).send(data.featured);
+  res.status(200).send(data.products);
+});
+
+app.get("/api/products/slug/:slug", (req, res) => {
+  const product = data.products.find(
+    (product) => product.slug === req.params.slug
+  );
+  if (product) {
+    res.status(200).send(product);
+  } else {
+    res.status(404).send("Product not found");
+  }
 });
 
 app.listen(5050, () => {

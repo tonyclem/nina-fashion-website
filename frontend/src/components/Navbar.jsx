@@ -56,6 +56,7 @@ const Navbar = () => {
               </span>
               <span className="bag">
                 <img src={shoppingBag} alt="shopping bag" />
+                <span className="item-count">5</span>
               </span>
 
               <label className="switch-theme">
@@ -198,7 +199,6 @@ const Wrapper = styled.div`
         .nav-hover::after {
           content: " ";
           position: absolute;
-
           width: 100%;
           height: 3px;
           left: 0;
@@ -226,9 +226,23 @@ const Wrapper = styled.div`
         }
 
         .bag {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
           img {
-            width: 2rem;
-            height: 2rem;
+            width: 2.2rem;
+            height: 2.2rem;
+          }
+
+          .item-count {
+            margin: 0 auto;
+            position: absolute;
+            font-size: 1rem;
+            font-weight: bold;
+            bottom: 5px;
           }
         }
 

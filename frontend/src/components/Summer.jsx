@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Stars } from "./Starts";
 import { formatPrice } from "../utils/helpers";
 import { useProductsContext } from "../context/products_context";
+import { Loading } from "./Loading";
 
 const SummerSales = () => {
   const { products, loading, error } = useProductsContext();
@@ -13,11 +14,11 @@ const SummerSales = () => {
       <h1>Summer Sales</h1>
       <div className="container-wrapper">
         {loading ? (
-          <div>Loading...</div>
+          <Loading />
         ) : error ? (
           <div>{error}</div>
         ) : (
-          products.map((product) => (
+          products.slice(0, 4).map((product) => (
             <div className="container" key={product.slug}>
               <div className="row">
                 <Link to={`/products/${product.slug}`}>
@@ -86,6 +87,7 @@ const Wrapper = styled.div`
 
         .stars {
           padding: 0.3rem;
+          margin: 0 auto;
         }
       }
     }

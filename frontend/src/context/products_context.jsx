@@ -1,13 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
 import { reducer } from "../reducers/product_reducer";
-
-const initialState = {
-  loading: true,
-  error: null,
-  products: [],
-  isSidebarOpen: false,
-};
+import initialState from "../initialState/initialState";
 
 const ProductsContext = React.createContext();
 

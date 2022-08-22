@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
-export const Stars = ({ stars }) => {
+export const Stars = ({ stars, reviews }) => {
   const tempStarts = Array.from({ length: 5 }, (_, index) => {
     const number = index + 0.5;
     return (
@@ -20,6 +20,7 @@ export const Stars = ({ stars }) => {
   return (
     <Wrapper>
       <div className="stars">{tempStarts}</div>
+      <p className="reviews">{reviews}</p>
     </Wrapper>
   );
 };
@@ -27,7 +28,7 @@ export const Stars = ({ stars }) => {
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+
   span {
     color: #ffb900;
     font-size: 1rem;
