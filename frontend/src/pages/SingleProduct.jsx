@@ -10,6 +10,8 @@ import ProductImages from "../components/ProductImages";
 import { Stars } from "../components/Starts";
 import { AddToCart } from "../components/AddToCart";
 import { Loading } from "../components/Loading";
+import { getError } from "../utils/errors";
+import Error from "../components/Error";
 
 export const SingleProduct = () => {
   const params = useParams();
@@ -27,7 +29,7 @@ export const SingleProduct = () => {
       const singleProducts = result.data;
       dispatch({ type: "FETCH_SUCCESS", payload: singleProducts });
     } catch (error) {
-      dispatch({ type: "FETCH_FAIL", payload: error.message });
+      dispatch({ type: "FETCH_FAIL", payload: getError(error) });
     }
   };
 
@@ -51,7 +53,7 @@ export const SingleProduct = () => {
   return loading ? (
     <Loading />
   ) : error ? (
-    <div>{error}</div>
+    <Error />
   ) : (
     <Wrapper>
       <div className="section section-center page">
